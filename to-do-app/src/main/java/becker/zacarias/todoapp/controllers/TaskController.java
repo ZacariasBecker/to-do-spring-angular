@@ -1,9 +1,12 @@
 package becker.zacarias.todoapp.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,12 +30,20 @@ public class TaskController {
 
 	@GetMapping
 	public ResponseEntity<List<TaskResponseDTO>> getAll() {
-
+		List<TaskResponseDTO> tasks = new ArrayList<>();
+		tasks = taskRepository.findAll().stream().map(TaskResponseDTO::new).toList();
+		return new ResponseEntity<List<TaskResponseDTO>>(tasks, HttpStatus.OK);
 	}
 
 	@GetMapping(path = "/{id}")
-	public ResponseEntity<Optional<TaskResponseDTO>> getById(@PathVariable Integer id) {
-
+	public ResponseEntity<Optional<TaskResponseDTO>> getById(@PathVariable String id) {
+		Optional<TaskResponseDTO> task;
+		try {
+			task = taskRepository.findById(id).map(TaskResponseDTO::new);
+			return new ResponseEntity<Optional<TaskResponseDTO>>(task, HttpStatus.OK);
+		} catch (NoSuchElementException nsee) {
+			return new ResponseEntity<Optional<TaskResponseDTO>>(HttpStatus.NOT_FOUND);
+		}
 	}
 
 	@PostMapping
