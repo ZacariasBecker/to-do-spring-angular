@@ -1,0 +1,7 @@
+.page-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-column-gap: 20px;
+    grid-row-gap: 1em;
+    padding: 1rem;
+}
