@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import becker.zacarias.todoapp.models.Task;
 import becker.zacarias.todoapp.models.TaskRequestDTO;
 import becker.zacarias.todoapp.models.TaskResponseDTO;
 import becker.zacarias.todoapp.repositories.TaskRepository;
@@ -47,8 +48,10 @@ public class TaskController {
 	}
 
 	@PostMapping
-	public ResponseEntity<TaskResponseDTO> save(@RequestBody TaskRequestDTO newData) {
-
+	public ResponseEntity<TaskResponseDTO> save(@RequestBody TaskRequestDTO data) {
+		Task taskData = new Task(data);
+		taskRepository.save(taskData);
+		return new ResponseEntity<>(new TaskResponseDTO(taskData), HttpStatus.OK);
 	}
 
 	@DeleteMapping(value = "/{id}")
