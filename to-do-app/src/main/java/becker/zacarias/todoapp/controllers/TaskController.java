@@ -8,6 +8,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,6 +30,7 @@ public class TaskController {
 	@Autowired
 	private TaskRepository taskRepository;
 
+	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@GetMapping
 	public ResponseEntity<List<TaskResponseDTO>> getAll() {
 		List<TaskResponseDTO> tasks = new ArrayList<>();
@@ -36,6 +38,7 @@ public class TaskController {
 		return new ResponseEntity<List<TaskResponseDTO>>(tasks, HttpStatus.OK);
 	}
 
+	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@GetMapping(path = "/{id}")
 	public ResponseEntity<Optional<TaskResponseDTO>> getById(@PathVariable String id) {
 		Optional<TaskResponseDTO> task;
@@ -47,6 +50,7 @@ public class TaskController {
 		}
 	}
 
+	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@PostMapping
 	public ResponseEntity<TaskResponseDTO> save(@RequestBody TaskRequestDTO data) {
 		Task taskData = new Task(data);
@@ -54,6 +58,7 @@ public class TaskController {
 		return new ResponseEntity<TaskResponseDTO>(new TaskResponseDTO(taskData), HttpStatus.OK);
 	}
 
+	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Optional<TaskResponseDTO>> deteleById(@PathVariable String id) {
 		try {
@@ -64,6 +69,7 @@ public class TaskController {
 		}
 	}
 
+	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<TaskResponseDTO> update(@PathVariable String id, @RequestBody TaskRequestDTO newData) {
 		return taskRepository.findById(id).map(task -> {
