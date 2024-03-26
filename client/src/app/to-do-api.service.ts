@@ -1,7 +1,8 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, retry, throwError } from 'rxjs';
-import { TaskInterface } from './models/task-interface';
+import { Observable, retry } from 'rxjs';
+import { ITaskResponse } from './models/i-task-response';
+import { ITaskRequest } from './models/i-task-request';
 
 @Injectable({
   providedIn: 'root'
@@ -16,24 +17,24 @@ export class ToDoApiService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  getTasks(): Observable<TaskInterface[]> {
-    return this.http.get<TaskInterface[]>(this.url).pipe(retry(2));
+  getAllTasks(): Observable<ITaskResponse[]> {
+    return this.http.get<ITaskResponse[]>(this.url).pipe(retry(2));
   }
 
-  getTaskById(id: string): Observable<TaskInterface> {
-    return this.http.get<TaskInterface>(this.url + '/' + id).pipe(retry(2));
+  getTaskById(id: string): Observable<ITaskResponse> {
+    return this.http.get<ITaskResponse>(this.url + '/' + id).pipe(retry(2));
   }
 
-  postTask(task: TaskInterface): Observable<TaskInterface> {
-    return this.http.post<TaskInterface>(this.url, JSON.stringify(task), this.httpOptions).pipe(retry(2));
+  postTask(task: ITaskRequest): Observable<ITaskResponse> {
+    return this.http.post<ITaskResponse>(this.url, JSON.stringify(task), this.httpOptions).pipe(retry(2));
   }
 
-  putTask(task: TaskInterface): Observable<TaskInterface> {
-    return this.http.put<TaskInterface>(this.url + '/' + task.id, JSON.stringify(task), this.httpOptions).pipe(retry(2));
+  putTask(id: string, task: ITaskRequest): Observable<ITaskResponse> {
+    return this.http.put<ITaskResponse>(this.url + '/' + id, JSON.stringify(task), this.httpOptions).pipe(retry(2));
   }
 
-  deteleTask(id: string): Observable<TaskInterface> {
-    return this.http.delete<TaskInterface>(this.url + '/' + id).pipe(retry(2));
+  deteleTask(id: string): Observable<ITaskResponse> {
+    return this.http.delete<ITaskResponse>(this.url + '/' + id).pipe(retry(2));
   }
 
 }

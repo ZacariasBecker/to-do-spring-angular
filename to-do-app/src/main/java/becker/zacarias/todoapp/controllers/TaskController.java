@@ -32,7 +32,7 @@ public class TaskController {
 
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@GetMapping
-	public ResponseEntity<List<TaskResponseDTO>> getAll() {
+	public ResponseEntity<List<TaskResponseDTO>> getAllTasks() {
 		List<TaskResponseDTO> tasks = new ArrayList<>();
 		tasks = taskRepository.findAll().stream().map(TaskResponseDTO::new).toList();
 		return new ResponseEntity<List<TaskResponseDTO>>(tasks, HttpStatus.OK);
@@ -40,7 +40,7 @@ public class TaskController {
 
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@GetMapping(path = "/{id}")
-	public ResponseEntity<Optional<TaskResponseDTO>> getById(@PathVariable String id) {
+	public ResponseEntity<Optional<TaskResponseDTO>> getTaskById(@PathVariable String id) {
 		Optional<TaskResponseDTO> task;
 		try {
 			task = taskRepository.findById(id).map(TaskResponseDTO::new);
@@ -52,7 +52,7 @@ public class TaskController {
 
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@PostMapping
-	public ResponseEntity<TaskResponseDTO> save(@RequestBody TaskRequestDTO data) {
+	public ResponseEntity<TaskResponseDTO> postTask(@RequestBody TaskRequestDTO data) {
 		Task taskData = new Task(data);
 		taskRepository.save(taskData);
 		return new ResponseEntity<TaskResponseDTO>(new TaskResponseDTO(taskData), HttpStatus.OK);
@@ -60,7 +60,7 @@ public class TaskController {
 
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<Optional<TaskResponseDTO>> deteleById(@PathVariable String id) {
+	public ResponseEntity<Optional<TaskResponseDTO>> deleteTask(@PathVariable String id) {
 		try {
 			taskRepository.deleteById(id);
 			return new ResponseEntity<Optional<TaskResponseDTO>>(HttpStatus.OK);
@@ -71,7 +71,7 @@ public class TaskController {
 
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<TaskResponseDTO> update(@PathVariable String id, @RequestBody TaskRequestDTO newData) {
+	public ResponseEntity<TaskResponseDTO> putTask(@PathVariable String id, @RequestBody TaskRequestDTO newData) {
 		return taskRepository.findById(id).map(task -> {
 			task.setName(new Task(newData).getName());
 			task.setDescription(new Task(newData).getDescription());

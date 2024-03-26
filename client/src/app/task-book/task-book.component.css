@@ -12,7 +12,7 @@ button {
     right: 30px;
     bottom: 30px;
     --button_radius: 50%;
-    --button_color: #fdff86;
+    --button_color: #bdbdbd;
     --button_outline_color: #0F0F0F;
     font-size: 20px;
     font-weight: bold;

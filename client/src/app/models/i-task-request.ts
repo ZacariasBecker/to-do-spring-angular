@@ -1,5 +1,4 @@
-export interface TaskInterface {
-    id: string;
+export interface ITaskRequest {
     name: string;
     description: string;
     openedDate: string;

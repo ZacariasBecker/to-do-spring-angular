@@ -1,8 +1,9 @@
 import { Component, input, Input } from '@angular/core';
-import { TaskInterface } from '../models/task-interface';
+import { ITaskResponse } from '../models/i-task-response';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { ToDoApiService } from '../to-do-api.service';
+import { ITaskRequest } from '../models/i-task-request';
 
 @Component({
   selector: 'app-task-note',
@@ -14,19 +15,31 @@ import { ToDoApiService } from '../to-do-api.service';
 })
 export class TaskNoteComponent {
 
-  @Input() task?: TaskInterface;
+  @Input() task?: ITaskResponse;
 
-  toggleCheckbox = (id: string) => {
-    this.toDoApiService.deteleTask(id).subscribe();
-  };
+  toggleCheckBox(task?: ITaskResponse) {
+    const newTask: ITaskRequest = {
+      name: task!.name,
+      description: task!.openedDate,
+      completed: !(task!.completed),
+      openedDate: task!.openedDate,
+      closedDate: task!.closedDate,
+    };
+    this.putTask(task!.id, newTask);
+  }
 
   constructor(private toDoApiService: ToDoApiService) { }
 
-  getTasks() { }
-  getTaskById() { }
-  postTask() { }
-  deleteTask() { }
-  putTask() { }
+  putTask(id: string, task: ITaskRequest) {
+    this.toDoApiService.putTask(id, task).subscribe((data: ITaskResponse) => {
+      console.log(data);
+    });
+  }
 
+  deleteTask(id: string) {
+    this.toDoApiService.deteleTask(id).subscribe((data: ITaskResponse) => {
+      console.log(data);
+    });
+  }
 
 }
