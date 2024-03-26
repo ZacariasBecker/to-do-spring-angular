@@ -1,7 +1,8 @@
-<div class="container">
+<div class="container" id="task-{{task!.id}}">
+    <button (click)="toggleCheckbox(task!.id)">DELETE</button>
     <div class="checkbox-wrapper">
-        <input [checked]="task?.completed" type="checkbox" class="check" id="{{task?.id}}">
-        <label for="{{task?.id}}" class="label">
+        <input [checked]="task!.completed" type="checkbox" class="check" id="checkbox-{{task!.id}}">
+        <label for="checkbox-{{task!.id}}" class="label">
             <svg width="45" height="45" viewBox="0 0 95 95">
                 <rect x="30" y="20" width="50" height="50" stroke="black" fill="none"></rect>
                 <g transform="translate(0,-952.36222)">
