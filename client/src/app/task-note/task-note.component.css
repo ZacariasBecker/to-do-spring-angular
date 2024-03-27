@@ -21,7 +21,6 @@
 }
 
 /* chekbox */
-
 .checkbox-wrapper input[type="checkbox"] {
     visibility: hidden;
     display: none;
@@ -59,7 +58,7 @@
     stroke-dasharray: 400;
     stroke-dashoffset: 400;
     transition: .5s stroke-dashoffset;
-    opacity: 0;
+    opacity: 1;
 }
 
 .checkbox-wrapper .check:checked+label svg g path {
@@ -71,4 +70,5 @@
 
 .completed {
     text-decoration: line-through;
+    color: #8f8f8f;
 }

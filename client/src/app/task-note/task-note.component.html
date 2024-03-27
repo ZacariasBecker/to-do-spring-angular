@@ -14,7 +14,7 @@
         </label>
     </div>
 
-    <div class="lines" [ngClass]="task?.completed?'completed':''">
+    <div [ngClass]="task?.completed?'completed':''">
         <p>name: {{task?.name}} </p>
         <p>description: {{task?.description}}</p>
         <p> openedDate: {{task?.openedDate}} </p>

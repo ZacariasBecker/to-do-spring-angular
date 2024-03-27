@@ -1,4 +1,4 @@
-import { Component, input, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ITaskResponse } from '../models/i-task-response';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -17,7 +17,7 @@ export class TaskNoteComponent {
 
   @Input() task?: ITaskResponse;
 
-  toggleCheckBox(task?: ITaskResponse) {
+  toggleCheckBox = (task?: ITaskResponse) => {
     const newTask: ITaskRequest = {
       name: task!.name,
       description: task!.openedDate,
@@ -25,12 +25,22 @@ export class TaskNoteComponent {
       openedDate: task!.openedDate,
       closedDate: task!.closedDate,
     };
+
+
+    if (task!.completed) {
+      document.getElementById('task-' + task!.id)!.classList.add('completed');
+    } else {
+      console.log(document.getElementById('task-' + task!.id)!.classList);
+      document.getElementById('task-' + task!.id)!.classList.remove('completed');
+    }
+
     this.putTask(task!.id, newTask);
-  }
+  };
 
   constructor(private toDoApiService: ToDoApiService) { }
 
-  putTask(id: string, task: ITaskRequest) {
+  putTask(id: string, task: ITaskRequest): any {
+
     this.toDoApiService.putTask(id, task).subscribe((data: ITaskResponse) => {
       console.log(data);
     });

@@ -20,26 +20,28 @@ export class TaskBookComponent {
 
   tasks?: ITaskResponse[] = [];
 
-  constructor(private doDoApiService: ToDoApiService) { }
+  constructor(private toDoApiService: ToDoApiService) { }
 
   ngOnInit(): void {
     this.getAllTasks();
   }
 
   getAllTasks() {
-    this.doDoApiService.getAllTasks().subscribe((data: ITaskResponse[]) => {
-      this.tasks = data;
+    this.toDoApiService.getAllTasks().subscribe((data: ITaskResponse[]) => {
+      this.tasks = data.sort((a, b) => new Date(a.openedDate).valueOf() - new Date(b.openedDate).valueOf());
     });
+
+    this.tasks = this.tasks;
   }
 
   getTaskById(id: string) {
-    this.doDoApiService.getTaskById(id).subscribe((data: ITaskResponse) => {
+    this.toDoApiService.getTaskById(id).subscribe((data: ITaskResponse) => {
       console.log(data);
     });
   }
 
   postTask(newTask: ITaskRequest) {
-    this.doDoApiService.postTask(newTask).subscribe((data: ITaskResponse) => {
+    this.toDoApiService.postTask(newTask).subscribe((data: ITaskResponse) => {
       console.log(data);
     });
   }
