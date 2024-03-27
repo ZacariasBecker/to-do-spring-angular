@@ -51,7 +51,7 @@ export class DevToolsComponent {
         description: "DESCRIÇÃO",
         openedDate: openedDate.toString(),
         closedDate: closedDate.toString(),
-        completed: true
+        completed: i % 2 === 0
       });
     }
   }
