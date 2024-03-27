@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ITaskResponse } from '../models/i-task-response';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -16,6 +16,7 @@ import { ITaskRequest } from '../models/i-task-request';
 export class TaskNoteComponent {
 
   @Input() task?: ITaskResponse;
+  @Output() deletedEvent = new EventEmitter<string>();
 
   toggleCheckBox = (task?: ITaskResponse) => {
     const newTask: ITaskRequest = {
@@ -32,14 +33,14 @@ export class TaskNoteComponent {
 
   constructor(private toDoApiService: ToDoApiService) { }
 
-  getTaskById(id: string) {
-    this.toDoApiService.getTaskById(id).subscribe((data: ITaskResponse) => {
-      this.task = data;
-    });
-  }
+  // UNUSED
+  // getTaskById(id: string) {
+  //   this.toDoApiService.getTaskById(id).subscribe((data: ITaskResponse) => {
+  //     this.task = data;
+  //   });
+  // }
 
   putTask(id: string, task: ITaskRequest): any {
-
     this.toDoApiService.putTask(id, task).subscribe((data: ITaskResponse) => {
       this.task = data;
     });
@@ -47,7 +48,7 @@ export class TaskNoteComponent {
 
   deleteTask(id: string) {
     this.toDoApiService.deteleTask(id).subscribe((data: ITaskResponse) => {
-      console.log(data);
+      this.deletedEvent.emit(id);
     });
   }
 

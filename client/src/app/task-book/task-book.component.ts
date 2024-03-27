@@ -20,6 +20,10 @@ export class TaskBookComponent {
 
   tasks?: ITaskResponse[] = [];
 
+  handleDeletedEvent(id: string) {
+    this.tasks = this.tasks!.filter(e => e.id !== id);
+  }
+
   constructor(private toDoApiService: ToDoApiService) { }
 
   ngOnInit(): void {
