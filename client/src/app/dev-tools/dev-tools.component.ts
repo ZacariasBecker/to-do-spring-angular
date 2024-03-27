@@ -47,7 +47,7 @@ export class DevToolsComponent {
       const closedDate = new Date(new Date(openedDate).setDate(openedDate.getDate() + 5));
 
       this.postTask({
-        name: "NOME",
+        name: `for: ${i}`,
         description: "DESCRIÇÃO",
         openedDate: openedDate.toString(),
         closedDate: closedDate.toString(),
