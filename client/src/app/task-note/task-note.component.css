@@ -1,5 +1,6 @@
 .container {
     display: flex;
+    flex-direction: column;
     min-height: 200px;
     background: #f1f1f1;
     background-image: linear-gradient(90deg,
@@ -8,16 +9,42 @@
             #ffb4b8 52px,
             transparent 52px),
         linear-gradient(#e1e1e1 0.1em, transparent 0.1em);
-    background-size: 100% 30px;
+    background-size: 100% 40px;
     box-shadow: rgba(0, 0, 0, 0.507) 0px 3px 8px;
     font-family: Handineat;
+}
 
+.task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close-button {
+    background-color: transparent;
+    height: 40px;
+    width: 40px;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.close-button svg {
+    height: 100%;
+    width: 100%;
+    fill: rgb(230, 91, 91);
+    transition: linear 0.1s;
+}
+
+.close-button svg:hover {
+    height: 105%;
+    width: 105%;
+    fill: rgb(255, 0, 0);
 }
 
 .lines {
-    margin-left: 60px;
-    margin-top: 5px;
-    line-height: 30px;
+    margin: 5px 40px 0 60px;
+    line-height: 40px;
 }
 
 /* chekbox */
@@ -34,9 +61,9 @@
 }
 
 .checkbox-wrapper {
+    margin: 2px 0 0 3px;
     position: relative;
     display: block;
-    overflow: hidden;
 }
 
 .checkbox-wrapper .label {
