@@ -26,23 +26,22 @@ export class TaskNoteComponent {
       closedDate: task!.closedDate,
     };
 
-
-    if (task!.completed) {
-      document.getElementById('task-' + task!.id)!.classList.add('completed');
-    } else {
-      console.log(document.getElementById('task-' + task!.id)!.classList);
-      document.getElementById('task-' + task!.id)!.classList.remove('completed');
-    }
-
     this.putTask(task!.id, newTask);
+
   };
 
   constructor(private toDoApiService: ToDoApiService) { }
 
+  getTaskById(id: string) {
+    this.toDoApiService.getTaskById(id).subscribe((data: ITaskResponse) => {
+      this.task = data;
+    });
+  }
+
   putTask(id: string, task: ITaskRequest): any {
 
     this.toDoApiService.putTask(id, task).subscribe((data: ITaskResponse) => {
-      console.log(data);
+      this.task = data;
     });
   }
 
