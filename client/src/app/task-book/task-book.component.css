@@ -4,6 +4,7 @@
     grid-column-gap: 20px;
     grid-row-gap: 1em;
     padding: 1rem;
+    min-height: 100vh;
 }
 
 button {
@@ -13,7 +14,7 @@ button {
     bottom: 30px;
     --button_radius: 50%;
     --button_color: #bdbdbd;
-    --button_outline_color: #0F0F0F;
+    --button_outline_color: #424242;
     font-size: 20px;
     font-weight: bold;
     border: none;
