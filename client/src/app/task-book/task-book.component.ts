@@ -5,11 +5,12 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { ToDoApiService } from '../to-do-api.service';
 import { ITaskRequest } from '../models/i-task-request';
+import { AddModalComponent } from '../add-modal/add-modal.component';
 
 @Component({
   selector: 'app-task-book',
   standalone: true,
-  imports: [TaskNoteComponent, CommonModule, HttpClientModule],
+  imports: [TaskNoteComponent, CommonModule, HttpClientModule, AddModalComponent],
   templateUrl: './task-book.component.html',
   styleUrl: './task-book.component.css',
   providers: [

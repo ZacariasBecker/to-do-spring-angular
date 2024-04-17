@@ -1,8 +1,16 @@
-<section class="page-wrapper ">
-    <app-task-note (deletedEvent)="handleDeletedEvent($event)" *ngFor="let task of this.tasks"
-        [task]="task"></app-task-note>
-</section>
+<div class="container">
 
-<button>
-    <span class="button_top">+</span>
-</button>
+    <app-add-modal />
+
+    <section class="page-wrapper ">
+        <app-task-note (deletedEvent)="handleDeletedEvent($event)" *ngFor="let task of this.tasks"
+            [task]="task"></app-task-note>
+    </section>
+
+    <button>
+        <span class="button_top" (click)="addmodal.toggle();">+</span>
+    </button>
+
+</div>
+
+<app-add-modal #addmodal />
