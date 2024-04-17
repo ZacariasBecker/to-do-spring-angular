@@ -29,10 +29,8 @@ export class DevToolsComponent {
     }
   }
 
-
   dtFourItems() {
     this.getAllTasks();
-
     this.dtDeleteAll();
     this.dtMockPlusFour();
   }
@@ -50,7 +48,7 @@ export class DevToolsComponent {
         name: `for: ${i}`,
         description: "DESCRIÇÃO",
         openedDate: openedDate.toString(),
-        closedDate: closedDate.toString(),
+        closedDate: i % 2 === 0 ? closedDate.toString() : '',
         completed: i % 2 === 0
       });
     }

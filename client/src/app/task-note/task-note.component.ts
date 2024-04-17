@@ -19,12 +19,13 @@ export class TaskNoteComponent {
   @Output() deletedEvent = new EventEmitter<string>();
 
   toggleCheckBox = (task?: ITaskResponse) => {
+    const closedDate = new Date();
     const newTask: ITaskRequest = {
       name: task!.name,
-      description: task!.openedDate,
+      description: task!.description,
       completed: !(task!.completed),
       openedDate: task!.openedDate,
-      closedDate: task!.closedDate,
+      closedDate: task!.completed ? '' : closedDate.toString()
     };
 
     this.putTask(task!.id, newTask);
@@ -51,5 +52,10 @@ export class TaskNoteComponent {
       this.deletedEvent.emit(id);
     });
   }
+
+  formatDate = (date: string): string => {
+    let dateD = new Date(date);
+    return (`${dateD.getDate()}-${dateD.getUTCMonth() + 1}-${dateD.getFullYear()}`);
+  };
 
 }
