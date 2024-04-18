@@ -36,7 +36,7 @@
     </div>
     <div class="lines" [ngClass]="task?.completed?'completed':''">
         <p>description: {{task?.description}}</p>
-        <p>openedDate: {{task?.openedDate}}</p>
-        <p>closedDate: {{task?.closedDate}}</p>
+        <p>openedDate: {{this.formatDate(task?.openedDate)}}</p>
+        <p>closedDate: {{this.formatDate(task?.closedDate)}}</p>
     </div>
 </div>

@@ -53,9 +53,11 @@ export class TaskNoteComponent {
     });
   }
 
-  formatDate = (date: string): string => {
+  formatDate = (date?: string): string => {
+    console.log(date);
+    if (!date) return '';
     let dateD = new Date(date);
-    return (`${dateD.getDate()}-${dateD.getUTCMonth() + 1}-${dateD.getFullYear()}`);
+    return (`${date.split(' ')[1]} - ${dateD.getDate()} - ${dateD.getFullYear()}`);
   };
 
 }
