@@ -13,7 +13,7 @@
                 </svg>
             </label>
         </div>
-        <p>Task: {{task?.name}} </p>
+        <p [ngClass]="task?.completed?'completed':''">Task: {{task?.name}} </p>
         <button class="close-button" (click)="deleteTask(task!.id)">
             <svg width="221.000000pt" height="229.000000pt" viewBox="0 0 221.000000 229.000000"
                 preserveAspectRatio="xMidYMid meet" class="close-svg">
@@ -36,7 +36,7 @@
     </div>
     <div class="lines" [ngClass]="task?.completed?'completed':''">
         <p>description: {{task?.description}}</p>
-        <p>openedDate: {{this.formatDate(task?.openedDate)}}</p>
-        <p>closedDate: {{this.formatDate(task?.closedDate)}}</p>
+        <p>opened: {{this.formatDate(task?.openedDate)}}</p>
+        <p>closed: {{this.formatDate(task?.closedDate)}}</p>
     </div>
 </div>

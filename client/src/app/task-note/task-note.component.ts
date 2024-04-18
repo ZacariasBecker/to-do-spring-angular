@@ -8,7 +8,7 @@ import { ITaskRequest } from '../models/i-task-request';
 @Component({
   selector: 'app-task-note',
   standalone: true,
-  imports: [CommonModule, HttpClientModule,],
+  imports: [CommonModule, HttpClientModule],
   templateUrl: './task-note.component.html',
   styleUrl: './task-note.component.css',
   providers: [ToDoApiService]
@@ -54,7 +54,6 @@ export class TaskNoteComponent {
   }
 
   formatDate = (date?: string): string => {
-    console.log(date);
     if (!date) return '';
     let dateD = new Date(date);
     return (`${date.split(' ')[1]} - ${dateD.getDate()} - ${dateD.getFullYear()}`);

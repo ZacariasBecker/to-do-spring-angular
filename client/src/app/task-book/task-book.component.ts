@@ -47,7 +47,7 @@ export class TaskBookComponent {
 
   postTask(newTask: ITaskRequest) {
     this.toDoApiService.postTask(newTask).subscribe((data: ITaskResponse) => {
-      console.log(data);
+      this.getAllTasks();
     });
   }
 
