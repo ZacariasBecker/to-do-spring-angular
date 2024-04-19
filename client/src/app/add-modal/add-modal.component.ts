@@ -15,7 +15,7 @@ export class AddModalComponent {
 
   @Output() postEvent = new EventEmitter<ITaskRequest>();
 
-  show: boolean = true;
+  show: boolean = false;
 
   public taskForm = new FormGroup({
     name: new FormControl('', Validators.required),
