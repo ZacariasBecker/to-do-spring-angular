@@ -1,7 +1,5 @@
 <div class="container">
 
-    <app-add-modal />
-
     <section class="page-wrapper ">
         <app-task-note (deletedEvent)="handleDeletedEvent($event)" *ngFor="let task of this.tasks"
             [task]="task"></app-task-note>
@@ -13,4 +11,4 @@
 
 </div>
 
-<app-add-modal #addmodal />
+<app-add-modal #addmodal (postEvent)="postTask($event)" />

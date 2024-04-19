@@ -1,8 +1,6 @@
 <ng-container *ngIf="this.show">
     <div class="modal">
-
         <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
-
             <p>
                 <label>Name: </label>
                 <input type="text" name="taskName" formControlName="taskName">
@@ -11,11 +9,8 @@
                 <label>Description: </label>
                 <input type="text" name="taskDescription" formControlName="taskDescription">
             </p>
-
             <button type="submit" [disabled]="!taskForm.valid">Enviar</button>
-
         </form>
-
     </div>
     <div (click)="toggleShow()" class="overlay"></div>
 </ng-container>
