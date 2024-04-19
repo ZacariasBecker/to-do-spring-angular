@@ -15,11 +15,11 @@ export class AddModalComponent {
 
   @Output() postEvent = new EventEmitter<ITaskRequest>();
 
-  show: boolean = false;
+  show: boolean = true;
 
   public taskForm = new FormGroup({
-    taskName: new FormControl('', Validators.required),
-    taskDescription: new FormControl('', Validators.required)
+    name: new FormControl('', Validators.required),
+    description: new FormControl('', Validators.required)
   });
 
   toggleShow() {
@@ -27,10 +27,10 @@ export class AddModalComponent {
   }
 
   onSubmit() {
-    if (this.taskForm.value.taskName && this.taskForm.value.taskDescription) {
+    if (this.taskForm.value.name && this.taskForm.value.description) {
       this.postEvent.emit({
-        name: this.taskForm.value.taskName,
-        description: this.taskForm.value.taskDescription,
+        name: this.taskForm.value.name,
+        description: this.taskForm.value.description,
         completed: false,
         openedDate: (new Date).toString(),
         closedDate: ""

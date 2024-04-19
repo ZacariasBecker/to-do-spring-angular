@@ -1,18 +1,28 @@
 .modal {
-    min-width: 320px;
+    --input-focus: #2d8cf0;
+    --font-color: #000000;
+    --font-color-sub: #161616;
+    --bg-color: beige;
+    --main-color: black;
+    --main-bg: rgba(0, 225, 255, 0.39);
     position: fixed;
     left: 50%;
-    padding: 24px;
     top: 50%;
     transform: translate(-50%, -50%);
-    z-index: 11;
     display: flex;
     flex-direction: column;
-    min-height: 200px;
-    max-width: 50vw;
-
+    font-family: Handineat;
     background-color: rgb(255, 255, 255);
-
+    z-index: 11;
+    padding: 20px;
+    background: linear-gradient(90deg, rgba(169, 211, 233, 0.603) 0%, rgba(109, 197, 244, 1) 100%);
+    backdrop-filter: blur(8px);
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+    border-radius: 5px;
+    border: 2px solid var(--main-color);
+    box-shadow: 4px 4px var(--main-color);
 }
 
 .overlay {
@@ -24,4 +34,77 @@
     top: 0;
     width: 100vw;
     z-index: 10;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    color: var(--font-color);
+    font-size: 30px;
+    margin-bottom: 25px;
+}
+
+.title span {
+    color: var(--font-color-sub);
+    font-size: 17px;
+}
+
+label {
+    font-size: 15px;
+}
+
+label:nth-child(3) {
+    margin-top: 30px;
+}
+
+.input {
+    width: 250px;
+    height: 40px;
+    border-radius: 5px;
+    border: 2px solid var(--main-color);
+    background-color: var(--bg-color);
+    box-shadow: 4px 4px var(--main-color);
+    font-size: 15px;
+    color: var(--font-color);
+    padding: 5px 10px;
+    outline: none;
+}
+
+.input::placeholder {
+    color: var(--font-color-sub);
+    opacity: 0.8;
+}
+
+.input:focus {
+    border: 2px solid var(--input-focus);
+}
+
+.button-confirm:active {
+    box-shadow: 0px 0px var(--main-color);
+    transform: translate(3px, 3px);
+}
+
+.button-confirm:disabled {
+    box-shadow: 0px 0px var(--main-color);
+    transform: translate(3px, 3px);
+    background-color: rgb(110, 110, 110);
+    border-color: rgb(199, 199, 199);
+    color: rgb(199, 199, 199);
+}
+
+.button-confirm {
+    margin: 50px auto 0 auto;
+    width: 120px;
+    height: 40px;
+    border-radius: 5px;
+    border: 2px solid var(--main-color);
+    background-color: var(--bg-color);
+    box-shadow: 4px 4px var(--main-color);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--font-color);
+    cursor: pointer;
 }
