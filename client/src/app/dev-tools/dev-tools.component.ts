@@ -29,6 +29,10 @@ export class DevToolsComponent {
     }
   }
 
+  aaa() {
+    console.log('aaa');
+  }
+
   dtFourItems() {
     this.getAllTasks();
     this.dtDeleteAll();

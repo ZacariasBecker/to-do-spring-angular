@@ -17,6 +17,10 @@ export class ToDoApiService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
+  aaa() {
+    console.log('aaa');
+  }
+
   getAllTasks(): Observable<ITaskResponse[]> {
     return this.http.get<ITaskResponse[]>(this.url).pipe(retry(2));
   }

@@ -10,8 +10,8 @@ describe('DevToolsComponent', () => {
     await TestBed.configureTestingModule({
       imports: [DevToolsComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(DevToolsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -20,4 +20,10 @@ describe('DevToolsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('hehe', () => {
+    component.deleteTask('');
+  });
+
+
 });
